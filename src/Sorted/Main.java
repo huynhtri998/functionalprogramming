@@ -32,7 +32,13 @@ public class Main {
 
         Map<Double, List<String>> groupedStudentWithName = students.stream()
                 .collect(Collectors.groupingBy(Student::getScore, Collectors.mapping(Student::getName, Collectors.toList())));
-        System.out.println("Student List:" + groupedStudentWithName);
+
+        List<String> strOfStudentName = students.stream()
+                                            .map(Student::getName)
+                                            .map(name -> name.split(""))
+                .flatMap(Arrays::stream)
+                .toList();
+        System.out.println("Student List:" + strOfStudentName);
     }
 
     public static double sum (double total , Student student2) {
