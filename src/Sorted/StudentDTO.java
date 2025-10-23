@@ -1,5 +1,7 @@
 package Sorted;
 
+import java.util.Objects;
+
 public class StudentDTO {
     private String name;
     private int age;
@@ -40,5 +42,22 @@ public class StudentDTO {
     @Override
     public String toString() {
         return  "StudentDTO{" + "name=" + name + ", age=" + age + ", score=" + score + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+
+        if (! (obj instanceof StudentDTO))
+            return false;
+        StudentDTO studentDTO = (StudentDTO) obj;
+
+        return age == studentDTO.age && score == studentDTO.score && name.equals(studentDTO.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, score);
     }
 }
